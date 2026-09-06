@@ -1,0 +1,3 @@
+# accountNumber|userId|type|balance|specialAttribute|createdAt|active
+ACC-100001|USR-H250125B|SAVINGS|1500.00|0.0350|2026-09-06T12:00:00Z|true
+ACC-100002|USR-H250125B|CHECKING|500.00|100.00|2026-09-06T12:00:00Z|true
