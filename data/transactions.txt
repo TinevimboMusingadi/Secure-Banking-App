@@ -1,0 +1,3 @@
+# transactionId|timestamp|sourceAccount|destAccount|type|amount|resultingBalance|description|status
+a1b2c3d4-e5f6-4a1b-8c9d-0e1f2a3b4c5d|2026-09-06T12:00:00Z|ACC-100001|INITIAL|DEPOSIT|1500.00|1500.00|Initial Opening Deposit - Savings|SUCCESS
+f9e8d7c6-b5a4-4f3e-2d1c-0b9a8f7e6d5c|2026-09-06T12:00:00Z|ACC-100002|INITIAL|DEPOSIT|500.00|500.00|Initial Opening Deposit - Checking|SUCCESS
