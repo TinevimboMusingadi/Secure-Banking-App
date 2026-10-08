@@ -10,17 +10,29 @@ public final class AsciiArt {
 
     private AsciiArt() {}
 
-    public static final String MAIN_BANNER =
+    public static final String MUSINGADI_BANNER =
             "========================================================================================\n" +
-            "   ____  ______ _____ _   _ ____  ______   ____          _   _ _  __\n" +
-            "  / ___||  ____/ ____| | | |  _ \\|  ____| |  _ \\   /\\   | \\ | | |/ /\n" +
-            "  \\___ \\| |__ | |    | | | | |_) | |__    | |_) | /  \\  |  \\| | ' / \n" +
-            "   ___) |  __|| |    | | | |  _ <|  __|   |  _ < / /\\ \\ | . ` |  <  \n" +
-            "  |____/| |____\\_____| |_| | | | | |____  | |_) / ____ \\| |\\  | . \\ \n" +
-            "        |______|\\_____\\___/|_| |_|______| |____/_/    \\_\\_| \\_|_|\\_\\\n" +
-            "                               CONSOLE BANKING SYSTEM                           \n" +
-            "                       [ Zero-Trust * PBKDF2 * RBAC * Audit ]                   \n" +
+            "   ____             _    _               __          ___ _   _     \n" +
+            "  |  _ \\           | |  (_)              \\ \\        / (_) | | |    \n" +
+            "  | |_) | __ _ _ __ | | ___ _ __   __ _    \\ \\  /\\  / / _| |_| |__  \n" +
+            "  |  _ < / _` | '_ \\| |/ / | '_ \\ / _` |    \\ \\/  \\/ / | | __| '_ \\ \n" +
+            "  | |_) | (_| | | | |   <| | | | | (_| |     \\  /\\  /  | | |_| | | |\n" +
+            "  |____/ \\__,_|_| |_|_|\\_\\_|_| |_|\\__, |      \\/  \\/   |_|\\__|_| |_|\n" +
+            "                                   __/ |                            \n" +
+            "                                  |___/                             \n" +
+            "   __  __ _    _  _____ _____ _   _  _____          _____ _____ \n" +
+            "  |  \\/  | |  | |/ ____|_   _| \\ | |/ ____|   /\\   |  __ \\_   _|\n" +
+            "  | \\  / | |  | | (___   | | |  \\| | |  __   /  \\  | |  | || |  \n" +
+            "  | |\\/| | |  | |\\___ \\  | | | . ` | | |_ | / /\\ \\ | |  | || |  \n" +
+            "  | |  | | |__| |____) |_| |_| |\\  | |__| |/ ____ \\| |__| || |_ \n" +
+            "  |_|  |_|\\____/|_____/|_____|_| \\_|\\_____/_/    \\_\\_____/_____|\n" +
+            "                                                                        \n" +
+            "                       [ BANKING WITH MUSINGADI ]                       \n" +
+            "               Tinevimbo Musingadi | ISA Reg: H250125B                  \n" +
+            "               Zero-Trust * PBKDF2-HMAC * RBAC * Audit                  \n" +
             "========================================================================================";
+
+    public static final String MAIN_BANNER = MUSINGADI_BANNER;
 
     public static final String VAULT_ICON =
             "                       .-----------------------------------.\n" +
@@ -84,5 +96,56 @@ public final class AsciiArt {
         System.out.printf("  | New Balance  : $%-32s |\n", balance);
         System.out.println("  | Status       : SUCCESS (Tamper-evident record)   |");
         System.out.println("  '--------------------------------------------------'");
+    }
+
+    /**
+     * Renders a smooth animated progress bar on the terminal.
+     *
+     * @param task description of the operation
+     * @param totalMs duration of the animation in milliseconds
+     */
+    public static void showProgress(String task, int totalMs) {
+        int totalBlocks = 22;
+        int interval = Math.max(10, totalMs / totalBlocks);
+        System.out.print("  " + task + " ");
+        for (int i = 0; i <= totalBlocks; i++) {
+            StringBuilder bar = new StringBuilder("[");
+            for (int j = 0; j < totalBlocks; j++) {
+                if (j < i) bar.append("=");
+                else if (j == i) bar.append(">");
+                else bar.append(" ");
+            }
+            int pct = (i * 100) / totalBlocks;
+            bar.append(String.format("] %3d%%", pct));
+            System.out.print("\r  " + task + " " + bar.toString());
+            System.out.flush();
+            try {
+                Thread.sleep(interval);
+            } catch (InterruptedException ignored) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        System.out.println(" [OK]");
+    }
+
+    /**
+     * Displays a dynamic in-place rotating spinner for quick feedback.
+     *
+     * @param message operation description
+     * @param iterations number of spinner cycles
+     */
+    public static void showSpinner(String message, int iterations) {
+        char[] spin = new char[]{'|', '/', '-', '\\'};
+        System.out.print("  " + message + "  ");
+        for (int i = 0; i < iterations; i++) {
+            System.out.print("\b" + spin[i % spin.length]);
+            System.out.flush();
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException ignored) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        System.out.println("\b[READY]");
     }
 }
