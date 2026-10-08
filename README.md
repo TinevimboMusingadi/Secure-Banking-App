@@ -47,8 +47,12 @@ A robust, console-based banking application written in Java that combines core O
 * **Customer Role:** Access to account balances, transaction creation, account statements, and password changes for self-owned assets.
 * **Administrator Role:** Access to the Security Operations Center (SOC) menu to list all users, review tamper-evident audit logs, and manually unlock locked accounts.
 
-### 6. Creative Console User Interface & ASCII Art
-* Distinctive, stylish ASCII art branding (Secure Bank Vault door, cryptographic shield, transaction receipt cards, and security warning badges) providing an engaging and professional terminal user experience.
+### 6. Creative Console User Interface & "Banking With Musingadi" Branding
+* **Signature Branding:** Retro-futuristic ASCII art typography proudly declaring **"BANKING WITH MUSINGADI"** by Tinevimbo Musingadi (Reg No: H250125B).
+* **Dynamic Terminal Animations:** Smooth, cinematic progress bars and in-place rotating spinners for startup boot, PBKDF2 key derivation, account creation, and atomic ledger persistence.
+* **Dual Password Visibility Modes:** Users can select between **`[1] Hidden Mode`** (masked for confidentiality) and **`[2] Visible Mode`** (plaintext echo to prevent blind typing errors).
+* **Password Verification & Mismatch Diagnostics:** Includes an optional reveal/verify preview prompt and side-by-side length/character comparison during registration and confirmation to eliminate unnoticed typos.
+* **Formatted Receipts:** Distinctive ASCII transaction receipt cards, secure bank vault doors, and tamper-evident status cards.
 
 ---
 
