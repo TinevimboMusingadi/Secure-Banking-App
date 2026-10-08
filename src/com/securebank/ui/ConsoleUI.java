@@ -41,6 +41,9 @@ public class ConsoleUI {
     }
 
     public void start() {
+        System.out.println("\n  Starting Secure Banking Core...");
+        AsciiArt.showProgress("Initializing Cryptographic Enclave & Records", 450);
+        System.out.println();
         System.out.println(AsciiArt.MAIN_BANNER);
         System.out.println(AsciiArt.VAULT_ICON);
 
@@ -106,7 +109,9 @@ public class ConsoleUI {
         System.out.print("  Enter Username: ");
         String username = scanner.nextLine().trim();
 
-        char[] password = readPasswordPrompt("  Enter Password: ");
+        char[] password = readPasswordWithVisibility("Enter Password for [" + username + "]:", false);
+
+        AsciiArt.showProgress("Deriving PBKDF2 Key (65,536 rounds) & Verifying", 450);
 
         try {
             this.currentSession = authService.login(username, password);
@@ -124,23 +129,36 @@ public class ConsoleUI {
 
     private void handleRegistration() {
         System.out.println("\n  --- CUSTOMER REGISTRATION ---");
+        System.out.println("  [ Banking With Musingadi | Secure Onboarding ]");
         System.out.print("  Enter Desired Username (4-20 alphanumeric chars): ");
         String username = scanner.nextLine().trim();
 
         System.out.print("  Enter Full Legal Name: ");
         String fullName = scanner.nextLine().trim();
 
-        System.out.println("  Password Policy: >= 8 chars, 1 uppercase, 1 lowercase, 1 number, 1 symbol.");
-        char[] password = readPasswordPrompt("  Enter Password: ");
-        char[] confirm = readPasswordPrompt("  Confirm Password: ");
+        System.out.println("\n  Password Policy: >= 8 chars, 1 uppercase, 1 lowercase, 1 number, 1 symbol.");
+        char[] password = readPasswordWithVisibility("Create Your Account Password:", true);
+        char[] confirm = readPasswordWithVisibility("Confirm Your Account Password:", true);
 
         if (!Arrays.equals(password, confirm)) {
             System.out.println("\n" + AsciiArt.WARNING_STAMP);
             System.out.println("  [!] Passwords do not match. Registration cancelled.");
+            System.out.printf("      First password length   : %d characters\n", password.length);
+            System.out.printf("      Confirm password length : %d characters\n", confirm.length);
+            System.out.print("      Would you like to reveal both to spot the typo? (y/N): ");
+            String inspect = scanner.nextLine().trim();
+            if (inspect.equalsIgnoreCase("y") || inspect.equalsIgnoreCase("yes")) {
+                System.out.println("      ----------------------------------------------");
+                System.out.println("      Password #1 : \"" + new String(password) + "\"");
+                System.out.println("      Password #2 : \"" + new String(confirm) + "\"");
+                System.out.println("      ----------------------------------------------");
+            }
             Arrays.fill(password, '\0');
             Arrays.fill(confirm, '\0');
             return;
         }
+
+        AsciiArt.showProgress("Generating 128-bit Salt & Initializing Vault Ledger", 550);
 
         try {
             User newUser = authService.registerUser(username, password, fullName, Role.CUSTOMER);
@@ -149,8 +167,8 @@ public class ConsoleUI {
             Account defaultAccount = bankingService.createAccount(tempSession, "SAVINGS", BigDecimal.ZERO);
 
             System.out.println("\n" + AsciiArt.SUCCESS_STAMP);
-            System.out.println("  Account registered successfully!");
-            System.out.println("  Assigned User ID       : " + newUser.getUserId());
+            System.out.println("  Account registered successfully with Musingadi Secure Bank!");
+            System.out.println("  Assigned User ID        : " + newUser.getUserId());
             System.out.println("  Primary Savings Account : " + defaultAccount.getAccountNumber());
             System.out.println("  You may now log in.");
         } catch (BankingException e) {
@@ -290,6 +308,7 @@ public class ConsoleUI {
         }
 
         try {
+            AsciiArt.showProgress("Allocating Account Ledger & Generating Keys", 350);
             Account acc = bankingService.createAccount(currentSession, type, initialDeposit);
             System.out.println("\n" + AsciiArt.SUCCESS_STAMP);
             System.out.println("  Account successfully created!");
@@ -319,6 +338,8 @@ public class ConsoleUI {
 
         System.out.print("  Deposit Description / Memo: ");
         String memo = scanner.nextLine().trim();
+
+        AsciiArt.showSpinner("Validating funds and updating persistent ledger...", 8);
 
         try {
             Transaction tx = bankingService.deposit(currentSession, accNum, amount, memo);
@@ -350,6 +371,8 @@ public class ConsoleUI {
 
         System.out.print("  Withdrawal Note / Memo: ");
         String memo = scanner.nextLine().trim();
+
+        AsciiArt.showSpinner("Checking polymorphic balance limits and dispensing...", 8);
 
         try {
             Transaction tx = bankingService.withdraw(currentSession, accNum, amount, memo);
@@ -384,6 +407,8 @@ public class ConsoleUI {
 
         System.out.print("  Reference / Memo: ");
         String memo = scanner.nextLine().trim();
+
+        AsciiArt.showProgress("Acquiring locks & executing atomic transfer", 400);
 
         try {
             bankingService.transfer(currentSession, srcAcc, dstAcc, amount, memo);
@@ -432,17 +457,20 @@ public class ConsoleUI {
 
     private void changePasswordFlow() {
         System.out.println("\n  --- CHANGE PASSWORD ---");
-        char[] currentPwd = readPasswordPrompt("  Enter Current Password: ");
-        char[] newPwd = readPasswordPrompt("  Enter New Password: ");
-        char[] confirmPwd = readPasswordPrompt("  Confirm New Password: ");
+        char[] currentPwd = readPasswordWithVisibility("Enter Current Password:", false);
+        char[] newPwd = readPasswordWithVisibility("Enter New Password:", true);
+        char[] confirmPwd = readPasswordWithVisibility("Confirm New Password:", true);
 
         if (!Arrays.equals(newPwd, confirmPwd)) {
+            System.out.println("\n" + AsciiArt.WARNING_STAMP);
             System.out.println("  [!] Passwords do not match.");
             Arrays.fill(currentPwd, '\0');
             Arrays.fill(newPwd, '\0');
             Arrays.fill(confirmPwd, '\0');
             return;
         }
+
+        AsciiArt.showProgress("Re-hashing with new salt and updating record", 400);
 
         try {
             authService.changePassword(currentSession, currentPwd, newPwd);
@@ -585,13 +613,54 @@ public class ConsoleUI {
     }
 
     private char[] readPasswordPrompt(String prompt) {
-        Console console = System.console();
-        if (console != null) {
-            return console.readPassword(prompt);
-        } else {
-            // Fallback for IDE console environments where System.console() is null
-            System.out.print(prompt);
-            return scanner.nextLine().toCharArray();
+        return readPasswordWithVisibility(prompt, false);
+    }
+
+    private char[] readPasswordWithVisibility(String prompt, boolean allowVerifyPreview) {
+        while (true) {
+            System.out.println("\n  " + prompt);
+            System.out.println("  Select Input Visibility Mode:");
+            System.out.println("    [1] Hidden Mode  (Characters hidden for privacy)");
+            System.out.println("    [2] Visible Mode (Characters visible as typed - prevents typos)");
+            System.out.print("  Select Mode [1/2, default 1]: ");
+            String mode = scanner.nextLine().trim();
+
+            char[] password;
+            if ("2".equals(mode)) {
+                System.out.print("  Type Password (VISIBLE): ");
+                password = scanner.nextLine().toCharArray();
+            } else {
+                Console console = System.console();
+                if (console != null) {
+                    password = console.readPassword("  Type Password (HIDDEN): ");
+                } else {
+                    System.out.print("  Type Password (HIDDEN): ");
+                    password = scanner.nextLine().toCharArray();
+                }
+            }
+
+            if (password == null || password.length == 0) {
+                System.out.println("  [!] Password cannot be empty. Please try again.");
+                continue;
+            }
+
+            if (allowVerifyPreview) {
+                System.out.print("  Would you like to reveal/verify the password you just typed? (y/N): ");
+                String reveal = scanner.nextLine().trim();
+                if (reveal.equalsIgnoreCase("y") || reveal.equalsIgnoreCase("yes")) {
+                    System.out.println("  --------------------------------------------------");
+                    System.out.println("  [i] ENTERED PASSWORD : \"" + new String(password) + "\"");
+                    System.out.println("  [i] Total Length     : " + password.length + " characters");
+                    System.out.println("  --------------------------------------------------");
+                    System.out.print("  Is this correct? [1] Yes, continue  [2] No, re-type: ");
+                    String confirmChoice = scanner.nextLine().trim();
+                    if ("2".equals(confirmChoice)) {
+                        Arrays.fill(password, '\0');
+                        continue;
+                    }
+                }
+            }
+            return password;
         }
     }
 }
