@@ -1,3 +1,4 @@
 # userId|username|passwordHash|salt|fullName|role|locked|failedAttempts|lockoutTimestamp|createdAt
-USR-ADMIN01|admin|7bb4fcbcda90c9b68ffce2f99587bfdfc9db86720f4c3a2fbb7c9eeac54508c9|4a2a149c4701258673a5a415ff52b9a7|System Security Administrator|ADMIN|false|0|null|2026-09-06T12:00:00Z
 USR-H250125B|tinevimbo|a02241cfb442be7db78119ae4e76a6cf0bf5d487ce1269e80a0684f88e10fa48|6f44d183dca010f3c5ea83eb6d8a43f8|Tinevimbo Musingadi|CUSTOMER|false|0|null|2026-09-06T12:00:00Z
+USR-017ED124|kingtinee|b2aac74c6c92483ca31aece823d7b25f775244c68eecfa9f30cd12e8b869cde4|09d9a6ed72844b74e91e73f448b4520c|Tinevimbo Musingadi|CUSTOMER|false|0|null|2026-10-08T07:43:54.724744200Z
+USR-ADMIN01|admin|7bb4fcbcda90c9b68ffce2f99587bfdfc9db86720f4c3a2fbb7c9eeac54508c9|4a2a149c4701258673a5a415ff52b9a7|System Security Administrator|ADMIN|false|0|null|2026-09-06T12:00:00Z
