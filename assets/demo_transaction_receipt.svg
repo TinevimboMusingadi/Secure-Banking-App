@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 760" width="100%" height="100%">
+  <defs>
+    <style>
+      .window-bg { fill: #0c0c0c; }
+      .title-bar { fill: #1f1f1f; }
+      .title-text { fill: #cccccc; font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 13px; }
+      .win-btn { fill: #cccccc; font-family: 'Segoe UI', sans-serif; font-size: 12px; }
+      .win-close:hover { fill: #e81123; }
+      .term-text { font-family: 'Consolas', 'Cascadia Code', 'Lucida Console', monospace; font-size: 12px; line-height: 15px; white-space: pre; }
+      .c-prompt { fill: #61afef; }
+      .c-white { fill: #f0f0f0; }
+      .c-cyan { fill: #56b6c2; }
+      .c-yellow { fill: #e5c07b; }
+      .c-green { fill: #98c379; font-weight: bold; }
+      .c-gray { fill: #7f848e; }
+      .c-magenta { fill: #c678dd; }
+    </style>
+  </defs>
+
+  <!-- Window Frame -->
+  <rect width="940" height="760" rx="8" ry="8" class="window-bg" stroke="#333333" stroke-width="1.5"/>
+
+  <!-- Windows Title Bar -->
+  <path d="M 0 8 Q 0 0 8 0 L 932 0 Q 940 0 940 8 L 940 32 L 0 32 Z" class="title-bar"/>
+  <rect x="14" y="9" width="14" height="14" rx="2" fill="#0078d7"/>
+  <text x="17" y="20" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="bold">>_</text>
+  <text x="36" y="21" class="title-text">Windows PowerShell - Active Session: tinevimbo (Customer)</text>
+
+  <!-- Windows Window Controls -->
+  <text x="850" y="20" class="win-btn">―</text>
+  <rect x="880" y="11" width="10" height="10" fill="none" stroke="#cccccc" stroke-width="1.2"/>
+  <text x="914" y="21" class="win-btn win-close" font-weight="bold">✕</text>
+  <line x1="0" y1="32" x2="940" y2="32" stroke="#2d2d2d" stroke-width="1"/>
+
+  <!-- Terminal Content Area -->
+  <text x="20" y="56" class="term-text c-yellow">  --- SECURE AUTHENTICATION ---</text>
+  <text x="20" y="74" class="term-text c-white">  Enter Username: <tspan class="c-prompt">tinevimbo</tspan></text>
+  <text x="20" y="92" class="term-text c-cyan">  Select Input Visibility Mode:</text>
+  <text x="20" y="110" class="term-text c-gray">    [1] Hidden Mode  (Characters hidden for privacy)</text>
+  <text x="20" y="128" class="term-text c-gray">    [2] Visible Mode (Characters visible as typed - prevents typos)</text>
+  <text x="20" y="146" class="term-text c-white">  Select Mode [1/2, default 1]: <tspan class="c-prompt">1</tspan></text>
+  <text x="20" y="164" class="term-text c-white">  Type Password (HIDDEN): <tspan class="c-yellow">••••••••••••</tspan></text>
+  
+  <text x="20" y="186" class="term-text c-cyan">  Deriving PBKDF2 Key (65,536 rounds) &amp; Verifying [====================&gt;] 100% [OK]</text>
+  
+  <text x="20" y="210" class="term-text c-green">  +---------------------------------------------------+</text>
+  <text x="20" y="226" class="term-text c-green">  | [OK] TRANSACTION APPROVED &amp; VERIFIED CRYPTOGRAPHICALLY |</text>
+  <text x="20" y="242" class="term-text c-green">  +---------------------------------------------------+</text>
+  <text x="20" y="260" class="term-text c-white">  Welcome, Tinevimbo Musingadi (Customer)!</text>
+
+  <!-- Customer Dashboard & Action -->
+  <text x="20" y="286" class="term-text c-cyan">+-------------------------------------------------------+</text>
+  <text x="20" y="302" class="term-text c-cyan">|   CUSTOMER DASHBOARD - Tinevimbo Musingadi             |</text>
+  <text x="20" y="318" class="term-text c-cyan">+-------------------------------------------------------+</text>
+  <text x="20" y="334" class="term-text c-white">|  [1] View My Accounts &amp; Balances                      |</text>
+  <text x="20" y="350" class="term-text c-white">|  [2] Create New Account (Savings / Checking)          |</text>
+  <text x="20" y="366" class="term-text c-white">|  [3] Deposit Funds                                    |</text>
+  <text x="20" y="382" class="term-text c-yellow">|  [4] Withdraw Funds                                   | &lt;-- Selected</text>
+  <text x="20" y="398" class="term-text c-white">|  [5] Transfer Funds to Another Account                |</text>
+  <text x="20" y="414" class="term-text c-white">|  [6] View Transaction Statement                       |</text>
+  <text x="20" y="430" class="term-text c-cyan">+-------------------------------------------------------+</text>
+
+  <text x="20" y="454" class="term-text c-yellow">  --- WITHDRAW FUNDS ---</text>
+  <text x="20" y="472" class="term-text c-white">  Enter Source Account Number: <tspan class="c-prompt">ACC-100001</tspan></text>
+  <text x="20" y="490" class="term-text c-white">  Enter Withdrawal Amount ($): <tspan class="c-prompt">150.00</tspan></text>
+  <text x="20" y="508" class="term-text c-white">  Withdrawal Note / Memo: <tspan class="c-gray">Campus Lab Utilities</tspan></text>
+  <text x="20" y="526" class="term-text c-cyan">  Checking polymorphic balance limits and dispensing... [READY]</text>
+
+  <!-- Official Transaction Receipt Card -->
+  <text x="20" y="552" class="term-text c-green">  +---------------------------------------------------+</text>
+  <text x="20" y="568" class="term-text c-green">  | [OK] TRANSACTION APPROVED &amp; VERIFIED CRYPTOGRAPHICALLY |</text>
+  <text x="20" y="584" class="term-text c-green">  +---------------------------------------------------+</text>
+
+  <text x="20" y="606" class="term-text c-white">  .--------------------------------------------------.</text>
+  <text x="20" y="622" class="term-text c-yellow">  |             OFFICIAL TRANSACTION RECEIPT         |</text>
+  <text x="20" y="638" class="term-text c-white">  |--------------------------------------------------|</text>
+  <text x="20" y="654" class="term-text c-white">  | Ref ID       : <tspan class="c-cyan">8f3a9e1b-4d2c-4f81-a7e2-19bc30d8   </tspan>|</text>
+  <text x="20" y="670" class="term-text c-white">  | Timestamp    : <tspan class="c-gray">2026-10-09 10:30:15               </tspan>|</text>
+  <text x="20" y="686" class="term-text c-white">  | Operation    : <tspan class="c-magenta">WITHDRAWAL                        </tspan>|</text>
+  <text x="20" y="702" class="term-text c-white">  | From Account : <tspan class="c-prompt">ACC-100001                        </tspan>|</text>
+  <text x="20" y="718" class="term-text c-white">  | Amount       : <tspan class="c-green">$150.00                           </tspan>|</text>
+  <text x="20" y="734" class="term-text c-white">  | New Balance  : <tspan class="c-green">$1350.00                          </tspan>|</text>
+  <text x="20" y="750" class="term-text c-white">  '--------------------------------------------------'</text>
+</svg>
