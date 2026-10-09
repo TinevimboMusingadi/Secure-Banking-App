@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 760" width="100%" height="100%">
+  <defs>
+    <style>
+      .window-bg { fill: #0c0c0c; }
+      .title-bar { fill: #1f1f1f; }
+      .title-text { fill: #cccccc; font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 13px; }
+      .win-btn { fill: #cccccc; font-family: 'Segoe UI', sans-serif; font-size: 12px; }
+      .win-close:hover { fill: #e81123; }
+      .term-text { font-family: 'Consolas', 'Cascadia Code', 'Lucida Console', monospace; font-size: 12px; line-height: 15px; white-space: pre; }
+      .c-prompt { fill: #61afef; }
+      .c-white { fill: #f0f0f0; }
+      .c-cyan { fill: #56b6c2; }
+      .c-yellow { fill: #e5c07b; }
+      .c-red { fill: #e06c75; font-weight: bold; }
+      .c-green { fill: #98c379; }
+      .c-gray { fill: #7f848e; }
+    </style>
+  </defs>
+
+  <!-- Window Frame -->
+  <rect width="940" height="760" rx="8" ry="8" class="window-bg" stroke="#333333" stroke-width="1.5"/>
+
+  <!-- Windows Title Bar -->
+  <path d="M 0 8 Q 0 0 8 0 L 932 0 Q 940 0 940 8 L 940 32 L 0 32 Z" class="title-bar"/>
+  <rect x="14" y="9" width="14" height="14" rx="2" fill="#0078d7"/>
+  <text x="17" y="20" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="bold">>_</text>
+  <text x="36" y="21" class="title-text">Windows PowerShell - Security Defense &amp; Brute-Force Lockout Test</text>
+
+  <!-- Windows Window Controls -->
+  <text x="850" y="20" class="win-btn">―</text>
+  <rect x="880" y="11" width="10" height="10" fill="none" stroke="#cccccc" stroke-width="1.2"/>
+  <text x="914" y="21" class="win-btn win-close" font-weight="bold">✕</text>
+  <line x1="0" y1="32" x2="940" y2="32" stroke="#2d2d2d" stroke-width="1"/>
+
+  <!-- Terminal Content Area -->
+  <text x="20" y="56" class="term-text c-yellow">  --- TESTING BRUTE-FORCE DEFENSE &amp; ACCOUNT LOCKOUT ---</text>
+
+  <!-- Attempt 1 -->
+  <text x="20" y="80" class="term-text c-white">  [Attempt #1] Username: <tspan class="c-prompt">tinevimbo</tspan> | Password: <tspan class="c-gray">WrongGuess#1</tspan></text>
+  <text x="20" y="96" class="term-text c-cyan">  Deriving PBKDF2 Key (65,536 rounds) &amp; Verifying [====================&gt;] 100% [OK]</text>
+  <text x="20" y="112" class="term-text c-red">  [!] Invalid credentials. Remaining attempts before lockout: 2</text>
+
+  <!-- Attempt 2 -->
+  <text x="20" y="140" class="term-text c-white">  [Attempt #2] Username: <tspan class="c-prompt">tinevimbo</tspan> | Password: <tspan class="c-gray">WrongGuess#2</tspan></text>
+  <text x="20" y="156" class="term-text c-cyan">  Deriving PBKDF2 Key (65,536 rounds) &amp; Verifying [====================&gt;] 100% [OK]</text>
+  <text x="20" y="172" class="term-text c-red">  [!] Invalid credentials. Remaining attempts before lockout: 1</text>
+
+  <!-- Attempt 3 -->
+  <text x="20" y="200" class="term-text c-white">  [Attempt #3] Username: <tspan class="c-prompt">tinevimbo</tspan> | Password: <tspan class="c-gray">WrongGuess#3</tspan></text>
+  <text x="20" y="216" class="term-text c-cyan">  Deriving PBKDF2 Key (65,536 rounds) &amp; Verifying [====================&gt;] 100% [OK]</text>
+  <text x="20" y="232" class="term-text c-red">  +---------------------------------------------------+</text>
+  <text x="20" y="248" class="term-text c-red">  | [!] SECURITY ALERT: TRANSACTION OR ACTION REJECTED |</text>
+  <text x="20" y="264" class="term-text c-red">  +---------------------------------------------------+</text>
+  <text x="20" y="280" class="term-text c-red">  [!] Invalid credentials. Maximum attempts exceeded. Your account has been locked.</text>
+
+  <!-- Attempt 4 (Locked) -->
+  <text x="20" y="312" class="term-text c-white">  [Attempt #4] Username: <tspan class="c-prompt">tinevimbo</tspan> | Password: <tspan class="c-green">Secure@2026! (CORRECT PASSWORD)</tspan></text>
+  <text x="20" y="328" class="term-text c-red">  +---------------------------------------------------+</text>
+  <text x="20" y="344" class="term-text c-red">  | [!] SECURITY ALERT: TRANSACTION OR ACTION REJECTED |</text>
+  <text x="20" y="360" class="term-text c-red">  +---------------------------------------------------+</text>
+  <text x="20" y="376" class="term-text c-red">  Account is temporarily locked due to 3 consecutive failed login attempts.</text>
+  <text x="20" y="392" class="term-text c-red">  Please wait 15 minutes or contact a bank administrator.</text>
+
+  <text x="20" y="424" class="term-text c-cyan">========================================================================================</text>
+  <text x="20" y="442" class="term-text c-yellow">  ADMINISTRATOR AUDIT LOG INSPECTION (TAMPER-EVIDENT TRAIL)</text>
+  <text x="20" y="460" class="term-text c-cyan">========================================================================================</text>
+
+  <!-- Audit Log Rows -->
+  <text x="20" y="488" class="term-text c-gray">[2026-10-09 10:31:42] ACTOR=tinevimbo | ACTION=LOGIN_ATTEMPT    | STATUS=FAILURE | DETAILS=Wrong password. Remaining attempts: 2</text>
+  <text x="20" y="508" class="term-text c-gray">[2026-10-09 10:31:50] ACTOR=tinevimbo | ACTION=LOGIN_ATTEMPT    | STATUS=FAILURE | DETAILS=Wrong password. Remaining attempts: 1</text>
+  <text x="20" y="528" class="term-text c-red">[2026-10-09 10:31:58] ACTOR=tinevimbo | ACTION=ACCOUNT_LOCKOUT  | STATUS=WARNING | DETAILS=Threshold reached. Account locked for 15 minutes.</text>
+  <text x="20" y="548" class="term-text c-red">[2026-10-09 10:32:05] ACTOR=tinevimbo | ACTION=LOGIN_ATTEMPT    | STATUS=BLOCKED | DETAILS=Account locked due to excessive failed attempts</text>
+  <text x="20" y="568" class="term-text c-green">[2026-10-09 10:33:10] ACTOR=admin     | ACTION=ADMIN_UNLOCK     | STATUS=SUCCESS | DETAILS=Unlocked account for: tinevimbo</text>
+
+  <!-- Security Summary Badge -->
+  <text x="20" y="608" class="term-text c-green">  +----------------------------------------------------------------------------------+</text>
+  <text x="20" y="626" class="term-text c-green">  | [VULNERABILITY MITIGATED] CWE-307: IMPROPER RESTRICTION OF EXCESSIVE AUTH TRIES  |</text>
+  <text x="20" y="644" class="term-text c-green">  | [VULNERABILITY MITIGATED] CWE-117: LOG INJECTION &amp; FORGING PREVENTED             |</text>
+  <text x="20" y="662" class="term-text c-green">  | [VULNERABILITY MITIGATED] CWE-208: TIMING ATTACK MITIGATED VIA DUMMY CRYPTO HASH |</text>
+  <text x="20" y="680" class="term-text c-green">  +----------------------------------------------------------------------------------+</text>
+
+  <text x="20" y="720" class="term-text c-prompt">PS D:\Secure coding&gt; <tspan class="c-white">█</tspan></text>
+</svg>
