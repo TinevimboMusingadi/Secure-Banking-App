@@ -14,6 +14,28 @@ A robust, console-based banking application written in Java that combines core O
 
 ---
 
+## Visual Application Demonstration & Live Windows Terminal Captures
+
+> [!NOTE]
+> Below are real Windows Terminal visual captures demonstrating the application executing on Windows PowerShell, featuring the signature **"BANKING WITH MUSINGADI"** branding, dynamic loading animations, dual password visibility controls, transaction receipts, and automated account lockout defense.
+
+### 1. Application Startup & "Banking With Musingadi" Signature Banner
+The terminal initializes the cryptographic enclave and displays the retro-futuristic ASCII art banner and authentication gateway:
+
+![Windows Terminal Startup Banner](assets/demo_startup_banner.svg)
+
+### 2. Dual Password Visibility Mode & Official Transaction Receipt
+Demonstrating secure customer login (with password visibility option), cash withdrawal, and official printed cryptographic receipt:
+
+![Windows Terminal Transaction Receipt](assets/demo_transaction_receipt.svg)
+
+### 3. Brute-Force Attack Mitigation & Account Lockout Defense
+Demonstrating 3-consecutive failed login threshold lockout and tamper-evident administrative audit logging:
+
+![Windows Terminal Security Lockout](assets/demo_security_lockout.svg)
+
+---
+
 ## Features Implemented
 
 ### 1. User Authentication & Session Management
@@ -92,6 +114,10 @@ Secure-Banking-App/
 ├── README.md
 ├── build.bat                  # Windows compilation script
 ├── run.bat                    # Windows launch script
+├── assets/                    # High-fidelity Windows Terminal SVG demo captures
+│   ├── demo_startup_banner.svg
+│   ├── demo_transaction_receipt.svg
+│   └── demo_security_lockout.svg
 ├── data/
 │   ├── users.txt              # User credentials & lockout states
 │   ├── accounts.txt           # Bank accounts & balances
